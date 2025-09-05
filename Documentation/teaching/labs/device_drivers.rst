@@ -220,7 +220,7 @@ my_device_data:
        //...
    }
 
-   static int my_read(struct file *file, char __user *user_buffer, size_t size, loff_t *offset)
+   static ssize_t my_read(struct file *file, char __user *user_buffer, size_t size, loff_t *offset)
    {
        struct my_device_data *my_data;
 
@@ -525,7 +525,7 @@ into account the internal buffer size, user buffer size and the offset:
 
 .. code-block:: c
 
-   static int my_read(struct file *file, char __user *user_buffer,
+   static ssize_t my_read(struct file *file, char __user *user_buffer,
                       size_t size, loff_t *offset)
    {
        struct my_device_data *my_data = (struct my_device_data *) file->private_data;
@@ -565,7 +565,7 @@ The structure of the write function is similar:
 
 .. code-block:: c
 
-   static int my_write(struct file *file, const char __user *user_buffer,
+   static ssize_t my_write(struct file *file, const char __user *user_buffer,
                        size_t size, loff_t * offset)
    {
        struct my_device_data *my_data = (struct my_device_data *) file->private_data;
